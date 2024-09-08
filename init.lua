@@ -13,11 +13,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.g.mapleader = "<Space>"
-vim.g.maplocalleader = "<Space>"
 
-require("lazy").setup("plugins")
+require("lazy").setup("autoload_plugins")
 require("init")
 
 

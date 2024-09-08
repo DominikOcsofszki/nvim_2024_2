@@ -13,9 +13,9 @@ return {
 				end,
 				-- Next, you can provide a dedicated handler for specific servers.
 				-- For example, a handler override for the `rust_analyzer`:
-				-- ["lua"] = function()
-				-- 	require("lua").setup {}
-				-- end
+				["lua"] = function()
+					require("lspconfig").lua.setup {}
+				end
 			}
 		end
 	}

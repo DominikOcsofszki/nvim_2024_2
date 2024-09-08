@@ -1,1 +1,2 @@
-require('configs')
+require('configs.must')
+require('configs.should')
