@@ -11,11 +11,6 @@ return {
 				function(server_name) -- default handler (optional)
 					require("lspconfig")[server_name].setup {}
 				end,
-				-- Next, you can provide a dedicated handler for specific servers.
-				-- For example, a handler override for the `rust_analyzer`:
-				["lua"] = function()
-					require("lspconfig").lua.setup {}
-				end
 			}
 		end
 	}
