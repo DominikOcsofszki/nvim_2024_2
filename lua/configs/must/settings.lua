@@ -9,3 +9,6 @@ vim.opt.jumpoptions = "stack,view"
 
 vim.opt.termguicolors = false
 vim.cmd.colorscheme("kanagawa")
+
+vim.o.relativenumber = true
+vim.o.number = true
