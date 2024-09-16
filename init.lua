@@ -9,7 +9,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 require("lazy").setup({
   {import = "autoload_plugins.must"},
   {import = "autoload_plugins.should"},
@@ -17,6 +16,9 @@ require("lazy").setup({
 })
 require('configs.must')
 require('configs.should')
+require('configs.rest')
+require('configs.load_all_filetype')
+require('extra')
 
 
 
