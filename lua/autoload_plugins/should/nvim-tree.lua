@@ -20,7 +20,7 @@ return {
 		},
 		filters = {
 			dotfiles = true,
-			-- custom = { "Document.tex.latexmain", "Document.synctex.gz", "__init__.py" },
+			custom = { "Document.tex.latexmain", "Document.synctex.gz", "__init__.py","__pycache__" },
 			-- exclude = {""},
 		},
 		live_filter = {

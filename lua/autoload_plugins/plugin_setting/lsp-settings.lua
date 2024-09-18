@@ -1,8 +1,7 @@
-M ={}
+M = {}
+local lspconfig = require("lspconfig")
 
-
-
-M.on_attach = function(_, bufnr)
+M.on_attach         = function(_, bufnr)
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
@@ -10,13 +9,13 @@ M.on_attach = function(_, bufnr)
 
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
+    nmap('<leader>ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    nmap('ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
     -- nmap("<leader>]", function() vim.diagnostic.goto_next() end, '[G]oto [D]iagnostics')
     -- nmap("<leader>[", function() vim.diagnostic.goto_prev() end, '[G]oto [D]iagnostics')
     nmap('<leader>gr', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    nmap('ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
     nmap('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('<leader>gR', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('<leader>gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>gD', vim.lsp.buf.type_definition, 'Type [D]efinition')
@@ -29,12 +28,13 @@ M.on_attach = function(_, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local _capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities      = require('cmp_nvim_lsp').default_capabilities(_capabilities)
 
-M.ltex = function()
+M.ltex              = function()
     local path_spelling = vim.fn.stdpath("config") .. "/files/spell-de.utf-8"
-    vim.keymap.set('n', '<leader>aw', ':!echo <c-r><c-w> >> /Users/dominikocsofszki/.config/nvim/files/spell-de.utf-8', {})
+    vim.keymap.set('n', '<leader>aw', ':!echo <c-r><c-w> >> /Users/dominikocsofszki/.config/nvim/files/spell-de.utf-8',
+        {})
     vim.keymap.set('v', '<leader>aw', 'y:!echo <c-r>" >> /Users/dominikocsofszki/.config/nvim/files/spell-de.utf-8', {})
     local spell_de = {}
     for word in io.open(path_spelling, "r"):lines() do
@@ -54,5 +54,51 @@ M.ltex = function()
         },
     }
 end
+M.pylsp             = function()
+    lspconfig.pylsp.setup {
+        on_attach = M.on_attach,
+        settings = {
+            pylsp = {
+                plugins = {
+                    -- formatter options
+                    ruff = { enabled = true },
+                    black = { enabled = false },
+                    autopep8 = { enabled = false },
+                    yapf = { enabled = false },
+                    -- linter options
+                    pylint = { enabled = true, executable = "pylint" },
+                    pyflakes = { enabled = false },
+                    pycodestyle = { enabled = false },
+                    -- type checker
+                    pylsp_mypy = { enabled = true },
+                    -- auto-completion options
+                    jedi_completion = { fuzzy = true },
+                    -- import sorting
+                    pyls_isort = { enabled = true },
+                },
+            },
+        },
+        flags = {
+            debounce_text_changes = 200,
+        },
+        capabilities = M.capabilities,
+    }
+end
+
+
+M.incc  = function ()
+        lspconfig.incc.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+         cmd = {'node','/Users/dominikocsofszki/WS24/lsp2/server/out/incc-lsp.js'},
+         filetypes = {'tx','incc'},
+         root_dir = function(fname)
+           return lspconfig.util.find_git_ancestor(fname)
+         end,
+    }
+end
+
+
+
 
 return M

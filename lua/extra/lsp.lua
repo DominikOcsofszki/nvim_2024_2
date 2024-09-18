@@ -34,26 +34,26 @@ local lspconfig = require("lspconfig")
 
 local util = require 'lspconfig.util'
 
-if not configs.incc_server then
- configs.incc_server = {
-  default_config = {
-    cmd = { 'python3', '/Users/dominikocsofszki/THESIS/dev/regex/read_lsp.py' },
-    filetypes = { 'incc','tx' },
-    root_dir = util.root_pattern('code.tx', '.git','package-lock.json'),
-    single_file_support = true,
-    settings = {},
-    init_options = {
-      -- provideFormatter = true,
-      -- embeddedLanguages = { css = true, javascript = true },
-      -- configurationSection = { 'html', 'css', 'javascript' },
-    },
-  },
-  docs = {
-    description = [['INCC-LSP'
-]],
-  },
-}
-end
-lspconfig.incc_server.setup{}
+-- if not configs.incc_server then
+--  configs.incc_server = {
+--   default_config = {
+--     cmd = { 'python3', '/Users/dominikocsofszki/THESIS/dev/regex/read_lsp.py' },
+--     filetypes = { 'incc','tx' },
+--     root_dir = util.root_pattern('code.tx', '.git','package-lock.json'),
+--     single_file_support = true,
+--     settings = {},
+--     init_options = {
+--       -- provideFormatter = true,
+--       -- embeddedLanguages = { css = true, javascript = true },
+--       -- configurationSection = { 'html', 'css', 'javascript' },
+--     },
+--   },
+--   docs = {
+--     description = [['INCC-LSP'
+-- ]],
+--   },
+-- }
+-- end
+-- lspconfig.incc_server.setup{}
 
 

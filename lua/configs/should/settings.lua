@@ -10,19 +10,18 @@ vim.g.have_nerd_font = true
 
 vim.opt.showmode = false
 
-vim.opt.undofile = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.signcolumn = 'yes'
 
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 vim.opt.inccommand = 'split'
 
 vim.opt.cursorline = true
 
 vim.cmd.colorscheme("kanagawa")
+vim.cmd("TSEnable highlight")
 
+vim.opt.hls = false

@@ -1,15 +1,16 @@
 local M = require("autoload_plugins.plugin_setting.lsp-settings")
 
 return {
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		init = function()
+			local lspconfig = require("lspconfig")
 			require("mason").setup()
 			require("mason-lspconfig").setup()
-			local lspconfig = require("lspconfig")
-
 			require("mason-lspconfig").setup_handlers {
 				function(server_name)
 					lspconfig[server_name].setup {
@@ -17,8 +18,12 @@ return {
 						capabilities = M.capabilities,
 					}
 				end,
-				["ltex"]=M.ltex
+				["ltex"] = M.ltex,
+				["pylsp"] = M.pylsp,
+			["incc"] = M.incc
 			}
 		end
 	}
 }
+
+
