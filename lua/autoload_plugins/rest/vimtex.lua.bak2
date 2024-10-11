@@ -1,0 +1,63 @@
+return -- lazy.nvim
+{
+    "lervag/vimtex",
+    lazy = false,
+    init = function()
+        -- config = function()
+        vim.g.tex_flavor = 'latex'
+        vim.g.vimtex_compiler_latexmk = {
+            options = {
+                -- '-pdf -interaction=nonstopmode -file-line-error -outdir=./out/ -shell-escape'
+            }
+        }
+
+        vim.cmd([[
+            let g:vimtex_view_general_options = '--synctex-forward @line:@col:@pdf --synctex-editor-command "nvim --headless -c \"VimtexInverseSearch %l %f\""'
+            let g:vimtex_compiler_latexmk = {
+                \ 'callback' : 1,
+                \ 'aux_dir' : 'out/',
+                \ 'out_dir' : '.',
+                \ 'continuous' : 1,
+                \ 'executable' : 'latexmk',
+                \ 'hooks' : [],
+                \ 'options' : [
+                \   '-interaction=nonstopmode',
+                \   '-file-line-error',
+                \   '-shell-escape',
+                \   '-synctex=1',
+                \   '-verbose',
+                \ ],
+                \}
+
+            let g:vimtex_doc_handlers = ['vimtex#doc#handlers#texdoc']
+            let maplocalleader = " "
+            let g:tex_flavor='latex'
+            let g:vimtex_view_method = 'skim'
+            let g:vimtex_view_enabled=1
+            let g:vimtex_doc_confirm_single = 0
+
+             "let g:vimtex_view_method = 'skim'
+             "let g:vimtex_view_skim_sync = 1
+            "let g:vimtex_view_method = 'zathura'
+            "let g:vimtex_view_general_viewer = 'zathura'
+            "let g:vimtex_view_general_viewer = 'zathura'
+            "let g:vimtex_view_method = 'zathura'
+            "let g:vimtex_view_method = 'zathura_simple'
+             "let g:vimtex_view_skim_activate = 1
+            "let g:vimtex_view_zathura_sync = 1
+            "let g:vimtex_view_zathura_activate = 1
+             "let g:vimtex_log_ignore = ['Underfull*','Overfull*','specifier changed to','Token not allowed in a PDF string']
+            "let g:vimtex_log_ignore = ['*Underfull*']
+            let g:vimtex_log_verbose = 1
+            let g:vimtex_quickfix_enabled=1
+
+                ]])
+                vim.g.vimtex_toc_config = {
+                    split_width = 30,
+                    tocdepth = 3,
+                    fold_enable = 1,
+                    fold_level = 2,
+                    show_help = 0,
+                }
+    end,
+}

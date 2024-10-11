@@ -1,4 +1,4 @@
-local M = require("autoload_plugins.plugin_setting.lsp-settings")
+local M = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-settings")
 
 return {
 	{
@@ -20,10 +20,9 @@ return {
 				end,
 				["ltex"] = M.ltex,
 				["pylsp"] = M.pylsp,
-			["incc"] = M.incc
+				["incc"] = M.incc,
+				["jedi_language_server"] = M.jedi_language_server,
 			}
 		end
 	}
 }
-
-

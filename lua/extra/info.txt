@@ -1,0 +1,15 @@
+
+            local root = lspconfig.util.find_git_ancestor(fname)
+            if root then
+                vim.api.nvim_echo({ { root, "Normal" } }, false, {})
+                vim.api.nvim_echo({ { root, "Normal" } }, false, {})
+                vim.api.nvim_echo({ { root, "Normal" } }, false, {})
+            else
+                vim.api.nvim_echo({ { "No Git ancestor found", "ErrorMsg" } }, false, {})
+            end
+            -- vim.cmd("echo '" .. root.."'")
+            vim.cmd("echo '" .. root .. "'")
+            vim.cmd("echo 'asd'")
+            -- vim.cmd
+            -- vim.api.nvim_echo({{"asd","Normal"}},false,{})
+            -- print(root)
