@@ -1,30 +1,75 @@
-vim.opt.makeprg = './build.sh'
-vim.opt.makeprg = 'as % && ld -o % %.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64  &&./% '
-vim.opt.makeprg = 'as % && ld -t -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64 && ./%<'
--- vim.opt.makeprg = 'as % && ld -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64 && ./%< && echo "Running %<"'
--- vim.opt.makeprg = 'echo "Hello from Neovim"'
+-- vim.opt.makeprg = './build.sh'
+-- vim.opt.makeprg = 'as % && ld -o % %.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64  &&./% '
+-- vim.opt.makeprg = 'as % && ld -t -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64 && ./%<'
+-- vim.opt.makeprg = 'as % && ld -t -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64 && %<'
+vim.opt.makeprg =
+'as % && ld  -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64 && ./%<'
 
--- vim.opt.makeprg = './%<'
+-- require('dap').adapters.lldb = {
+--     type = 'executable',
+--     command = '/usr/bin/lldb-vscode',  -- Change this if `lldb-vscode` is located elsewhere
+--     name = "lldb"
+-- }
+-- require('dap').configurations.lldb = {
+--     {
+--         name = "Launch",
+--         type = "lldb",
+--         request = "launch",
+--         program = function()
+--             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--         end,
+--         cwd = '${workspaceFolder}',
+--         stopOnEntry = false,
+--         args = {},
+--     },
+-- }
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+
+vim.keymap.set('n', '<leader>r', ' <cmd>w<CR><CMD>!make -f ~/.config/asm_Makefile FILE_PATH=%<CR>', {})
+
+-- local dap = require('dap')
+-- dap.adapters.asm = {
+--   type = 'executable',
+--   command = "/Users/dominik/HOME/.local/share/nvim/mason/bin/codelldb",
+--   -- stdio = "null",
+--   args = { "--port","8080" },
+--   host = '127.0.0.1',
+--   port = 8080,
+--   --
+-- }
 --
-vim.opt.makeprg = 'as % && ld -t -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64 && %<'
-vim.opt.makeprg = 'as % && ld  -o %< %<.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64 && ./%<'
-
-require('dap').adapters.lldb = {
-    type = 'executable',
-    command = '/usr/bin/lldb-vscode',  -- Change this if `lldb-vscode` is located elsewhere
-    name = "lldb"
-}
-require('dap').configurations.c = {
-    {
-        name = "Launch",
-        type = "lldb",
-        request = "launch",
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        cwd = '${workspaceFolder}',
-        stopOnEntry = false,
-        args = {},
-    },
-}
-vim.keymap.set('n','<leader>r',' <CMD>!make -f ~/.config/asm_Makefile FILE_PATH=%<CR>',{})
+-- local dap = require('dap')
+-- dap.configurations.asm = { {
+--   -- name = "Launch",
+--   name = "Launch",
+--   type = "asm",
+--   -- type = "asm",
+--   request = "attach",
+--   -- program = "${workspaceFolder}/<executable file>",
+--   program = "${workspaceFolder}/m2",
+--   -- args = {"-arg1", "-arg2"},
+-- } }
+-- dap.configurations.asm =
+--
+-- {
+--   {
+--     type = 'asm';
+--     request = 'launch';
+--     name = "Launch file";
+--     program = "${file}";
+--     -- pythonPath = function()
+--     --   return '/usr/bin/python'
+--     -- end;
+--   },
+-- }
+-- require('dap').configurations.asm = {
+--         name = "Launch",
+--         type = "lldb",
+--         request = "launch",
+--         program = function()
+--             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--         end,
+--         cwd = '${workspaceFolder}',
+--         stopOnEntry = false,
+--         args = {},
+-- }

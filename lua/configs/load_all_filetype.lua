@@ -11,6 +11,7 @@ end
 create_autocmd_for_my_filetypes("tex")
 create_autocmd_for_my_filetypes("python")
 create_autocmd_for_my_filetypes("asm")
+create_autocmd_for_my_filetypes("lua")
 
 
 -- vim.api.nvim_create_autocmd("filetype",{

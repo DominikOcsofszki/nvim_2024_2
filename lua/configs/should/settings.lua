@@ -22,6 +22,5 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 vim.cmd.colorscheme("kanagawa")
-vim.cmd("TSEnable highlight")
 
 vim.opt.hls = false
