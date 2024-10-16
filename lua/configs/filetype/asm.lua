@@ -23,53 +23,28 @@ vim.opt.makeprg =
 --         args = {},
 --     },
 -- }
-vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = 'Error' })
 
+-- cmd('DapShowLog', 'split | e ' .. vim.fn.stdpath('cache') .. '/dap.log | normal! G', {})
+-- cmd('DapContinue', function() require('dap').continue() end, { nargs = 0 })
+-- cmd('DapToggleBreakpoint', function() require('dap').toggle_breakpoint() end, { nargs = 0 })
+-- cmd('DapToggleRepl', function() require('dap.repl').toggle() end, { nargs = 0 })
+-- cmd('DapStepOver', function() require('dap').step_over() end, { nargs = 0 })
+-- cmd('DapStepInto', function() require('dap').step_into() end, { nargs = 0 })
+-- cmd('DapStepOut', function() require('dap').step_out() end, { nargs = 0 })
+-- cmd('DapTerminate', function() require('dap').terminate() end, { nargs = 0 })
+-- cmd('DapDisconnect', function() require('dap').disconnect({ terminateDebuggee = false }) end, { nargs = 0 })
+-- cmd('DapLoadLaunchJSON', function() require('dap.ext.vscode').load_launchjs() end, { nargs = 0 })
+-- cmd('DapRestartFrame', function() require('dap').restart_frame() end, { nargs = 0 })
+
+
+
+
+-- vim.keymap.set('t', "<c-s>", '', {})
 vim.keymap.set('n', '<leader>r', ' <cmd>w<CR><CMD>!make -f ~/.config/asm_Makefile FILE_PATH=%<CR>', {})
+vim.keymap.set('n', "<leader>db", function() vim.cmd("DapToggleBreakpoint") end, {})
+vim.keymap.set('n', "<leader>dn", function() vim.cmd("DapNew") end, {})
+vim.keymap.set('n', "<c-.>", function() vim.cmd("DapStepInto") end, {})
+vim.keymap.set('n', "<c-n>", function() vim.cmd("DapStepOver") end, {})
+vim.keymap.set('n', "<c-,>", function() vim.cmd("DapStepOut ") end, {})
 
--- local dap = require('dap')
--- dap.adapters.asm = {
---   type = 'executable',
---   command = "/Users/dominik/HOME/.local/share/nvim/mason/bin/codelldb",
---   -- stdio = "null",
---   args = { "--port","8080" },
---   host = '127.0.0.1',
---   port = 8080,
---   --
--- }
---
--- local dap = require('dap')
--- dap.configurations.asm = { {
---   -- name = "Launch",
---   name = "Launch",
---   type = "asm",
---   -- type = "asm",
---   request = "attach",
---   -- program = "${workspaceFolder}/<executable file>",
---   program = "${workspaceFolder}/m2",
---   -- args = {"-arg1", "-arg2"},
--- } }
--- dap.configurations.asm =
---
--- {
---   {
---     type = 'asm';
---     request = 'launch';
---     name = "Launch file";
---     program = "${file}";
---     -- pythonPath = function()
---     --   return '/usr/bin/python'
---     -- end;
---   },
--- }
--- require('dap').configurations.asm = {
---         name = "Launch",
---         type = "lldb",
---         request = "launch",
---         program = function()
---             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---         end,
---         cwd = '${workspaceFolder}',
---         stopOnEntry = false,
---         args = {},
--- }

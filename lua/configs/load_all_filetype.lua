@@ -13,6 +13,7 @@ create_autocmd_for_my_filetypes("python")
 create_autocmd_for_my_filetypes("asm")
 create_autocmd_for_my_filetypes("lua")
 
+require("extra.my_plugins.load_my_plugins")
 
 -- vim.api.nvim_create_autocmd("filetype",{
 -- 	pattern={"tex"},

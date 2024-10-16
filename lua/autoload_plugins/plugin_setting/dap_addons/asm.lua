@@ -22,6 +22,7 @@ dap.configurations.asm = {
     cwd = '${workspaceFolder}',
     -- stopOnEntry = false,
     stopOnEntry = true,
+    sourceLanguage = "asm"
   },
 }
 

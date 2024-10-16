@@ -1,4 +1,3 @@
--- Function to read the file and return its content as a table of lines
 local function read_file(filepath)
   local file = io.open(filepath, "r")
   if not file then
@@ -13,24 +12,21 @@ local function read_file(filepath)
   return lines
 end
 
--- Function to create a popup window from the file content
 local function show_popup_from_file(filepath)
-  -- Read file content
   local content = read_file(filepath)
 
-  -- Create a new buffer
   local buf = vim.api.nvim_create_buf(false, true)  -- Create unlisted scratch buffer
 
-  -- Set buffer content to file content
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
 
-  -- Define window options
   local win_opts = {
     relative = "editor",
-    width = 100,
-    height = 20,
-    col = math.floor((vim.o.columns - 50) / 2),
-    row = math.floor((vim.o.lines - 20) / 2),
+    width = 70,
+    height = 40,
+    -- col = math.floor((vim.o.columns - 50) / 2),
+    col = math.floor(vim.o.columns ),
+    -- row = math.floor((vim.o.lines - 20) / 2),
+    row = math.floor(vim.o.lines),
     style = "minimal",
     border = "rounded",
   }
@@ -45,7 +41,43 @@ local function show_popup_from_file(filepath)
     callback = function() vim.api.nvim_win_close(win, true) end
   })
 end
+local txt_dir = "/Users/dominik/HOME/.config/nvim/lua/extra/txt_files/"
+-- -- Custom completion function
+-- local function item_completion(arg_lead, cmd_line, cursor_pos)
+--   -- Use the `vim.tbl_filter` function to filter items that match the current input (arg_lead)
+--   return vim.tbl_filter(function(item)
+--     return vim.startswith(item, arg_lead)
+--   end, items)
+-- end
 
--- Example usage: Load and display the file "example.txt"
--- show_popup_from_file("/Users/dominik/HOME/.config/nvim/lua/extra/info.txt")
-show_popup_from_file("")
+local options = {
+  'Select file:',
+  '1. latex.txt',
+  '2. asm.txt',
+}
+
+
+-- Show input list and get the user's selection
+
+local function ask_for_input_with_completion()
+  -- local input = vim.fn.input("Choose a file: ", "", "customlist,v:lua.item_completion")
+  local input = vim.fn.inputlist(options)
+  -- Check if the user provided an input
+  if input == "" then
+    print("No item selected.")
+    return
+  end
+  local file
+    if input == 2 then
+    file ="asm.txt"
+  end
+    if input == 1 then
+    file ="latex.txt"
+  end
+  -- print("You selected: " .. file)
+  show_popup_from_file(txt_dir .. file)
+
+end
+
+-- Call the function
+ask_for_input_with_completion()
