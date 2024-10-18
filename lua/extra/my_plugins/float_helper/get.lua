@@ -1,5 +1,5 @@
-M = {}
-local FOLDER_FILES = "/Users/dominik/HOME/.config/nvim/lua/extra/txt_files/"
+local M = {}
+local FOLDER_FILES = "/Users/dominik/HOME/.config/nvim/lua/extra/txt_files/asm/"
 
 local function list_files_to_indexed_table(dir)
   local indexed_table = {}

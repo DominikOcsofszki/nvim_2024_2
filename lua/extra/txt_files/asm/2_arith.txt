@@ -1,0 +1,10 @@
+ADD     - Add
+SUB     - Subtract
+ADDS    - Add and update condition flags
+SUBS    - Subtract and update condition flags
+MUL     - Multiply
+SMULH   - Signed multiply high
+UMULH   - Unsigned multiply high
+SDIV    - Signed division
+UDIV    - Unsigned division
+NEG     - Negate

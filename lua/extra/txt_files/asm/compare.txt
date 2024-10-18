@@ -1,0 +1,4 @@
+CMP     - Compare (subtract)
+CMN     - Compare negative (add)
+TST     - Test bits (AND)
+TEQ     - Test equivalence (XOR)

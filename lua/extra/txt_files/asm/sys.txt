@@ -1,0 +1,5 @@
+NOP     - No operation
+RET     - Return from subroutine
+HLT     - Halt execution
+SVC     - Supervisor call
+BRK     - Breakpoint

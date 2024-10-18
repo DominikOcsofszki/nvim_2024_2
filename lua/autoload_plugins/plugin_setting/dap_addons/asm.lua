@@ -15,7 +15,8 @@ dap.configurations.asm = {
     name = "Launch file",
     type = "asm",
     request = "launch",
-    program = "${workspaceFolder}/${fileBasenameNoExtension}",
+    -- program = "${workspaceFolder}/${fileBasenameNoExtension}",
+    program = "${relativeFileDirname}/${fileBasenameNoExtension}",
     -- program = function()
     --   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     -- end,
@@ -26,19 +27,4 @@ dap.configurations.asm = {
   },
 }
 
-
--- dap.adapters.codelldb = {
---   type = 'server',
---   host = '127.0.0.1',
---   port = 13000 -- 💀 Use the port printed out or specified with `--port`
--- }
--- dap.configurations.asm = { {
---   type = "asm",
---   request = "launch",
---   name = "Launch File",
---   -- program = "${workspaceFolder}/${fileBasenameNoExtension}",
---   cwd = "${workspaceFolder}",
---   program = "${fileBasename}"
--- } }
---
 

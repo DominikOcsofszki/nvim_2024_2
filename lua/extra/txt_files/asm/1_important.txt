@@ -1,0 +1,7 @@
+LDR - Load register from memory
+STR - Store register to memory
+LDP - Load pair of registers from memory
+STP - Store pair of registers to memory
+adrp x0, L.str@PAGE
+add x1,x1,L.str@PAGEOFF
+adrp = page adress

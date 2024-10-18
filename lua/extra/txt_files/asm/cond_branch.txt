@@ -1,0 +1,10 @@
+BEQ     - Branch if equal
+BNE     - Branch if not equal
+BGT     - Branch if greater than
+BGE     - Branch if greater than or equal
+BLT     - Branch if less than
+BLE     - Branch if less than or equal
+BHI     - Branch if higher (unsigned)
+BHS     - Branch if higher or same (unsigned)
+BLO     - Branch if lower (unsigned)
+BLS     - Branch if lower or same (unsigned)

@@ -1,0 +1,49 @@
+# General Options
+-h, --headers                 - Display the headers for each section.
+-f, --file-headers            - Display the contents of the overall file header.
+-d, --disassemble             - Disassemble all code sections.
+-D, --disassemble-all         - Disassemble all sections, including data sections.
+-j <section>, --section=<section>  - Disassemble only the specified section.
+-s, --full-contents           - Display the full contents of all sections.
+-t, --syms                    - Display the symbol table.
+-r, --reloc                   - Display relocation entries in the file.
+-e, --debug-info              - Display debugging information.
+--macho                       - Display Mach-O specific information.
+--macho-header                - Display Mach-O header information.
+--macho-load-commands         - Display Mach-O load commands.
+--macho-data-in-code          - Display data in code entries for Mach-O files.
+--macho-indirect-symbols      - Display Mach-O indirect symbols.
+--macho-rebase                - Display Mach-O rebase information.
+--macho-bind                  - Display Mach-O binding information.
+--macho-lazy-bind             - Display Mach-O lazy binding information.
+--macho-weak-bind             - Display Mach-O weak binding information.
+--macho-export-trie           - Display Mach-O export trie.
+--macho-unwind-info           - Display Mach-O unwind information.
+--demangle                    - Demangle C++ symbols to human-readable form.
+--help                        - Display help information.
+--version                     - Display version information.
+
+# Disassembly Options
+-M <option>, --disassembler-options=<option>  - Pass target-specific disassembler options.
+--x86-asm-syntax=<att|intel>  - Set the assembly syntax for x86 to either AT&T or Intel (default is AT&T).
+
+# Filtering and Selection Options
+--arch=<arch>                 - Specify architecture when working with multi-architecture binaries.
+--symbol=<symbol>             - Display information only for the specified symbol.
+--start-address=<address>     - Specify the starting address for disassembly.
+--stop-address=<address>      - Specify the stopping address for disassembly.
+
+# Additional Output Options
+-T, --dynamic-syms            - Display the dynamic symbol table.
+-g, --debugging               - Display debugging information.
+--source                      - Interleave source code with disassembly, if available.
+--prefix=<string>             - Add a specified prefix to the filenames in the output.
+--show-raw-insn               - Display raw instruction bytes along with disassembly.
+--no-show-raw-insn            - Do not display raw instruction bytes.
+--adjust-vma=<offset>         - Adjust the displayed addresses by a specified offset.
+
+# Mach-O Specific Options
+--macho-segment=<segment>     - Specify a Mach-O segment to display.
+--macho-section=<section>     - Specify a Mach-O section to display.
+--macho-sub-sections          - Display sub-sections within Mach-O sections.
+--macho-code-signature        - Display Mach-O code signature.

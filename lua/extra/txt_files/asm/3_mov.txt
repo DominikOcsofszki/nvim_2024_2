@@ -1,0 +1,11 @@
+MOV     - Move value from one register to another
+LDR     - Load register from memory
+STR     - Store register to memory
+LDUR    - Load register from memory with unscaled offset
+STUR    - Store register to memory with unscaled offset
+LDP     - Load pair of registers from memory
+STP     - Store pair of registers to memory
+LDXR    - Load exclusive register
+STXR    - Store exclusive register
+LDARB   - Load-acquire register byte
+STLXR   - Store-release exclusive register

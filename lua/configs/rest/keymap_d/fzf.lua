@@ -1,11 +1,13 @@
--- vim.keymap.set({ "i" }, "<C-x><C-x>",
---   function()
---     require("fzf-lua").complete_file({
---       cmd = "rg --files",
---       winopts = { preview = { hidden = "nohidden" } }
---     })
---   end, { silent = true, desc = "Fuzzy complete file" })
---
+
+
+
+
+
+
+
+
+
+
 local mac_syscalls = require("configs.rest.keymap_d.syscall").syscalls
 local keys = {}
 
@@ -14,7 +16,7 @@ for _, syscall in ipairs(mac_syscalls) do
 end
 
 
-vim.keymap.set('i', 'ii', function()
+vim.keymap.set('n', '<leader>i', function()
 	require("fzf-lua").fzf_exec(keys, {
 		complete = true,
 		sink = function(selected)

@@ -1,0 +1,7 @@
+B       - Branch
+BL      - Branch with link (call a function)
+BR      - Branch to register
+CBZ     - Compare and branch if zero
+CBNZ    - Compare and branch if not zero
+TBZ     - Test bit and branch if zero
+TBNZ    - Test bit and branch if not zero

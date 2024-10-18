@@ -1,0 +1,5 @@
+AND     - Bitwise AND
+ORR     - Bitwise OR
+EOR     - Bitwise exclusive OR
+ANDS    - Bitwise AND and update flags
+BIC     - Bitwise clear (AND NOT)

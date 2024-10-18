@@ -1,0 +1,7 @@
+FADD    - Floating-point add
+FSUB    - Floating-point subtract
+FMUL    - Floating-point multiply
+FDIV    - Floating-point divide
+FNEG    - Floating-point negate
+FMOV    - Move floating-point value
+FCMP    - Floating-point compare
