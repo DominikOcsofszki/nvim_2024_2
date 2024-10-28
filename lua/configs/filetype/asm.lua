@@ -23,3 +23,6 @@ vim.opt.makeprg =
 --         args = {},
 --     },
 -- }
+--
+
+vim.keymap.set('n', '<leader>r', ' <cmd>w<CR><CMD> !make -C %:p:h -f ~/.config/asm_Makefile  FILE_PATH=%:t <CR>', {buffer=true})

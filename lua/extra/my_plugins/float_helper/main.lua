@@ -33,6 +33,9 @@ vim.keymap.set('n', '<leader>ao', function()
   M.objdump()
 end, {})
 
+vim.keymap.set('n', '<leader>aa', function()
+  M.switch_files()
+end, {})
 
 local objdump_fun = function()
   vim.api.nvim_create_user_command('Ob', function(opts)
@@ -43,8 +46,22 @@ local objdump_fun = function()
   end, { nargs = "+" })
 end
 
+
+-- -- !!!TODO
+-- M.switch_files = function()
+--   local fname = vim.fn.expand("%:p:r")
+--   local options = { '-h', '-l', '-f', '-d', '-d -j __text' }
+--   local index = select_from_text(options)
+--   local cmd = "objdump " .. options[index] .. " " .. fname
+--   local output = vim.fn.systemlist(cmd)
+--   GET.popUpFromTextWidthHeight(output, 80, 80)
+-- end
+
+
+
 M.setup = function()
   helper_fun()
   objdump_fun()
 end
+
 return M

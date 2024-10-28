@@ -18,7 +18,6 @@ vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', n
 
 -- vim.keymap.set('t', "<c-s>", '', {})
 -- vim.keymap.set('n', '<leader>r', ' <cmd>w<CR><CMD>!make -f ~/.config/asm_Makefile FILE_PATH=%<CR>', {})
-vim.keymap.set('n', '<leader>r', ' <cmd>w<CR><CMD> !make -C %:p:h -f ~/.config/asm_Makefile  FILE_PATH=%:t <CR>', {})
 vim.keymap.set('n', "<leader>db", function() vim.cmd("DapToggleBreakpoint") end, {})
 vim.keymap.set('n', "<leader>dn", function() vim.cmd("DapNew") end, {})
 vim.keymap.set('n', "<c-.>", function() vim.cmd("DapStepInto") end, {})
@@ -31,17 +30,20 @@ vim.keymap.set('n','gi', function () dapui.eval() end,{})
 vim.keymap.set('n','gh', function () dapui.eval() end,{})
 
 vim.api.nvim_create_user_command('WatchAll',function ()
+	dapui.elements.watches.add("sp")
+	dapui.elements.watches.add("x20")
 	dapui.elements.watches.add("x0")
 	dapui.elements.watches.add("x1")
 	dapui.elements.watches.add("x2")
+	dapui.elements.watches.add("pc")
 	dapui.elements.watches.add("fp")
 	dapui.elements.watches.add("lr")
-	dapui.elements.watches.add("sp")
-	dapui.elements.watches.add("pc")
+	dapui.elements.repl.buffer("lr")
 end ,{})
 
 vim.api.nvim_create_user_command('Watch',function (opts)
-	dapui.elements.watches.add(opts.args)
-	vim.print(opts)
+	for index, arg in ipairs(opts.fargs) do
+			dapui.elements.watches.add(arg)
+	end
 end ,{nargs="+",complete = "command"})
 

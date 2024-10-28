@@ -6,3 +6,9 @@ vim.keymap.set({"n"}, "<leader>y", function ()
 	vim.print(fpath)
 	vim.fn.setreg("+",fpath)
 end ,{})
+
+vim.keymap.set('n','g1',':tabn1<cr>',{})
+vim.keymap.set('n','g2',':tabn2<cr>',{})
+vim.keymap.set('n','g3',':tabn3<cr>',{})
+vim.keymap.set('n','g4',':tabn4<cr>',{})
+

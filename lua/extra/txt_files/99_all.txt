@@ -1,0 +1,1 @@
+				GET.show_popup_from_file(fname)

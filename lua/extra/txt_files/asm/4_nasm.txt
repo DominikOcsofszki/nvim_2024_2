@@ -1,0 +1,17 @@
+RBX Sonderrolle bei MaMa/IMa GP (bei CMa stackbase?)
+RSP stack pointer
+RBP frame pointer
+===================
+rbx = bottom-stack-base
+
+rbp = FP
+
+rsp=SP
+|		| 
+|4	| <- rsp (SP) (SP auf das oberste!!!)
+|3	|
+|2	| <- rbp (FP)
+|1	|
+|0	| <- rbx (X20)
+
+  

@@ -6,6 +6,15 @@ return {
 			-- number = true,
 			-- relativenumber = true,
 		},
+      -- sort = {
+      --   -- sorter = "name",
+      --   -- folders_first = true,
+      --   -- files_first = false,
+      --   sorter = "name",
+      --   folders_first = false,
+      --   files_first = false,
+      -- },
+      prefer_startup_root = false,
 		renderer = {
 			add_trailing = true,
 			icons = {

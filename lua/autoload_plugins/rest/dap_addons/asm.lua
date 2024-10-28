@@ -21,8 +21,8 @@ dap.configurations.asm = {
     --   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     -- end,
     cwd = '${workspaceFolder}',
-    -- stopOnEntry = false,
-    stopOnEntry = true,
+    stopOnEntry = false,
+    -- stopOnEntry = true,
     sourceLanguage = "asm"
   },
 }

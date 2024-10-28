@@ -24,3 +24,4 @@ vim.opt.cursorline = true
 vim.cmd.colorscheme("kanagawa")
 
 vim.opt.hls = false
+vim.opt.scrolloff = 15
