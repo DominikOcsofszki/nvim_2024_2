@@ -1,7 +1,8 @@
 
 local create_autocmd_for_my_filetypes = function (ftype)
-vim.api.nvim_create_autocmd("filetype",{
-	pattern={ftype},
+-- vim.api.nvim_create_autocmd("filetype",{
+        vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+	pattern={'*.'..ftype},
 	callback = function ()
 		require("configs.filetype."..ftype)
 	end
@@ -13,6 +14,7 @@ create_autocmd_for_my_filetypes("python")
 create_autocmd_for_my_filetypes("asm")
 create_autocmd_for_my_filetypes("lua")
 create_autocmd_for_my_filetypes("tx")
+create_autocmd_for_my_filetypes("puml")
 
 vim.keymap.set('n', '<leader>`', function()
   fpath = "/Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py"

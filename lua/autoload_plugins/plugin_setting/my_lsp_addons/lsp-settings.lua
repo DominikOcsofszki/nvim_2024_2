@@ -24,6 +24,7 @@ M.ltex                                    = function()
 	require("lspconfig").ltex.setup {
 		capabilities = M.capabilities,
 		on_attach = M.on_attach,
+		filetypes = { 'txt' },
 		settings = {
 			ltex = {
 				language = "de-DE",
