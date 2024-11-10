@@ -5,7 +5,7 @@ return {
                 configs = {
                 tree_docs = { enable = true },
 
-                ensure_installed = "",
+                ensure_installed = "html",
                 auto_install = true,
                 highlight = {
                     enable = true,

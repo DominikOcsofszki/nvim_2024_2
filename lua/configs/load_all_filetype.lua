@@ -31,3 +31,6 @@ vim.api.nvim_create_autocmd("BufEnter",{
 	end
 })
 
+
+require("configs.filetype.all")
+
