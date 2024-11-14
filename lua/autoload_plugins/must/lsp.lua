@@ -27,6 +27,7 @@ return {
 				["ltex"] = my_lsp.ltex,
 				["pylsp"] = my_lsp.pylsp,
 				-- ["incc"] = my_lsp.incc,
+				-- ["incc_py"] = my_lsp.incc_py2,
 				["jedi_language_server"] = my_lsp.jedi_language_server,
 				-- ["arm_lsp"] =lsp_new.arm_lsp
 			}

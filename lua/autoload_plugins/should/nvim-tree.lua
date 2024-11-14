@@ -3,6 +3,8 @@ return {
 	opts = {
 		sync_root_with_cwd = false,
 		view = {
+			-- width = 50,
+
 			-- number = true,
 			-- relativenumber = true,
 		},
@@ -29,7 +31,11 @@ return {
 		},
 		filters = {
 			dotfiles = true,
-			custom = { "Document.tex.latexmain", "Document.synctex.gz", "__init__.py","__pycache__" },
+			custom = { 
+				"Document.tex.latexmain", "Document.synctex.gz", "__init__.py","__pycache__",
+				"*.css","**.spec.ts"
+
+			},
 			-- exclude = {""},
 		},
 		live_filter = {

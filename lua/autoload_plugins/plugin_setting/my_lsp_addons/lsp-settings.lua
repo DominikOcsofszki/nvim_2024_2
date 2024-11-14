@@ -1,5 +1,6 @@
 M                                         = {}
 local lspconfig                           = require("lspconfig")
+local configs                             = require("lspconfig.configs")
 local util                                = require("lspconfig").util
 local _capabilities                       = vim.lsp.protocol.make_client_capabilities()
 M.capabilities                            = require('cmp_nvim_lsp').default_capabilities(_capabilities)
@@ -53,7 +54,18 @@ M.incc                                    = function()
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		cmd = { 'node', '/Users/dominikocsofszki/WS24/lsp2/server/out/incc-lsp.js' },
-		filetypes = { 'tx', 'incc' },
+		filetypes = { 'tx', 'incc', 'py' },
+		root_dir = function(fname)
+			return lspconfig.util.find_git_ancestor(fname)
+		end,
+	}
+end
+M.incc_py                                 = function()
+	lspconfig.incc_py.setup {
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		cmd = { '/Users/dominik/HOME/BA/DEV/MAIN/.venv/bin/python3.12', '/Users/dominik/HOME/BA/DEV/MAIN/src/incc_lsp/server2.py' },
+		filetypes = { 'test' },
 		root_dir = function(fname)
 			return lspconfig.util.find_git_ancestor(fname)
 		end,

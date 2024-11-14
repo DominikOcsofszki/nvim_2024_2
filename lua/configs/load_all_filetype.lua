@@ -11,7 +11,7 @@ end
 
 create_autocmd_for_my_filetypes("tex")
 create_autocmd_for_my_filetypes("python")
-create_autocmd_for_my_filetypes("asm")
+create_autocmd_for_my_filetypes("s")
 create_autocmd_for_my_filetypes("lua")
 create_autocmd_for_my_filetypes("tx")
 create_autocmd_for_my_filetypes("puml")
@@ -24,12 +24,12 @@ vim.keymap.set('n','<leader>io',':tabnew /Users/dominik/HOME/DEV/Compiler/incc24
 
 require("extra.my_plugins.load_my_plugins")
 
-vim.api.nvim_create_autocmd("BufEnter",{
-	pattern={"*.tx"},
-	callback = function ()
-		require("configs.filetype."..'tx')
-	end
-})
+-- vim.api.nvim_create_autocmd("BufEnter",{
+-- 	pattern={"*.tx"},
+-- 	callback = function ()
+-- 		require("configs.filetype."..'tx')
+-- 	end
+-- })
 
 
 require("configs.filetype.all")

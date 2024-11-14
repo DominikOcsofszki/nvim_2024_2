@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>r', ":!python3 /Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py<CR>", {buffer=true})
+-- vim.keymap.set('n', '<leader>r', ":!python3 /Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py<CR>", {buffer=true})
 vim.cmd("set ft=incc")
 vim.cmd("set cms=#%s")
 
