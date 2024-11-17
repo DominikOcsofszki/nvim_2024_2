@@ -9,7 +9,7 @@ local create_autocmd_for_my_filetypes = function(ftype)
 end
 
 create_autocmd_for_my_filetypes("tex")
-create_autocmd_for_my_filetypes("python")
+create_autocmd_for_my_filetypes("py")
 create_autocmd_for_my_filetypes("s")
 create_autocmd_for_my_filetypes("lua")
 create_autocmd_for_my_filetypes("tx")

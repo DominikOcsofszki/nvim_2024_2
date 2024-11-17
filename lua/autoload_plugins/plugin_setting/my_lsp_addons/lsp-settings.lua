@@ -85,6 +85,7 @@ local disable_pylint_rules                = {
 	'C0115',
 	'R0903',
 	'C0103',
+	'C0116',
 }
 fun_disable_pylint_rules(disable_pylint_rules)
 
