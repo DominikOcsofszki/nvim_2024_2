@@ -1,3 +1,4 @@
+local FloatHelper = require "extra/my_plugins/float_helper/pop_from_file"
 local M = {}
 local prep_tree = function(bufnr, lang)
 	local parser = vim.treesitter.get_parser(bufnr, lang)
@@ -18,13 +19,50 @@ local use_query = function()
 	local query = query2
 	return query
 end
-
+local DEBUG = false
+--- Function to print findings from a Tree-Sitter query.
+---@param query userdata The Tree-Sitter query to match.
+---@param tree userdata The syntax tree to search.
+---@param bufnr integer The buffer number containing the text.
 local print_findings = function(query, tree, bufnr)
+	local tbl = {}
 	for pattern, match, metadata in query:iter_matches(tree:root(), bufnr) do
-		for id, nodes in pairs(match) do
-			local text = vim.treesitter.get_node_text(nodes, bufnr)
-			print(text)
+		---@type integer pattern -- Pattern ID
+		---@type table<integer, TSNode> match -- Match table containing TSNode elements
+		---@type table metadata -- Metadata for the match (optional)
+		for id, node in pairs(match) do
+			---@type integer id -- ID of the captured node
+			---@type TSNode node -- The Tree-Sitter node
+			local text = vim.treesitter.get_node_text(node, bufnr)
+			---@type string text -- res
+			if DEBUG then
+				vim.print(node:type())
+				vim.print(node:symbol())
+				vim.print(node:named())
+				vim.print(node:missing())
+				vim.print(node:extra())
+				vim.print(node:id())
+				vim.print(node:metadata())
+				-- vim.print(nodes:field('name'))
+				-- vim.print(nodes:child_count())
+				-- vim.print(nodes:child())
+				-- vim.print(nodes:named_child_count())
+				-- vim.print("======start_end===========")
+				--
+				-- -- vim.print(nodes:start())
+				-- -- vim.print(nodes:end_())
+				-- vim.print(nodes:range())
+				vim.print("=================")
+				if text.find(text, "_print") then
+					print(text)
+				end
+			else
+				table.insert(tbl, text)
+			end
 		end
+	end
+	if not DEBUG then
+		FloatHelper.popUpFromText(tbl)
 	end
 end
 
@@ -39,17 +77,15 @@ local function extract_attribrutes()
 	extract_attributes_from_query(query, 'html')
 end
 
-local qtest = vim.treesitter.query.parse('python', [[
-  (function_definition)
-    name: (identifier)@test_func
-    ;name: (identifier)@test_func
-		(#match? @test_func "^test_")
-		;)
-  ]])
-
+local create_tree_cmd = function(name, query, lang)
+	vim.api.nvim_create_user_command(name, function() extract_attributes_from_query(query, lang) end, {})
+end
+local queriesList = require "extra.my_plugins.treesitter_helper.queries"
 M.setup = function()
 	vim.api.nvim_create_user_command('ExtractAttributes', extract_attribrutes, {})
-	vim.api.nvim_create_user_command('ExtractTests', function() extract_attributes_from_query(qtest, 'python') end, {})
+	create_tree_cmd('ExtractClasses', queriesList.q_class, 'python')
+	create_tree_cmd('ExtractTests', queriesList.q_test, 'python')
+	create_tree_cmd('EClassMethod', queriesList.q_class_method, 'python')
 end
 return M
 

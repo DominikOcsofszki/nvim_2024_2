@@ -72,37 +72,62 @@ M.incc_py                                 = function()
 	}
 end
 
+local fun_disable_pylint_rules            = function(rules)
+	local args = {}
+	for index, rule in ipairs(rules) do
+		table.insert(args, "-d " .. rule)
+	end
+	return args
+end
 
+local disable_pylint_rules                = {
+	'C0114',
+	'C0115',
+	'R0903',
+	'C0103',
+}
+fun_disable_pylint_rules(disable_pylint_rules)
 
--- M.pylsp             = function()
---     lspconfig.pylsp.setup {
---         -- on_attach = M.on_attach,
---         capabilities = M.capabilities,
---         settings = {
---             pylsp = {
---                 -- plugins = {
---                 --     -- formatter options
---                 --     ruff = { enabled = true },
---                 --     black = { enabled = false },
---                 --     autopep8 = { enabled = false },
---                 --     yapf = { enabled = false },
---                 --     -- linter options
---                 --     -- pylint = { enabled = true, executable = "pylint" },
---                 --     pyflakes = { enabled = false },
---                 --     pycodestyle = { enabled = false },
---                 --     -- type checker
---                 --     -- pylsp_mypy = { enabled = true },
---                 --     -- auto-completion options
---                 --     jedi_completion = { fuzzy = true },
---                 --     -- import sorting
---                 --     pyls_isort = { enabled = true },
---                 -- },
---             },
---         },
---         flags = {
---             debounce_text_changes = 200,
---         },
---     }
--- end
+M.pylsp = function()
+	lspconfig.pylsp.setup {
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		settings = {
+			pylsp = {
+				plugins = {
+					pylint = {
+						maxLineLength = 30,
+						enabled = true,
+						executable = "pylint",
+						args = fun_disable_pylint_rules(disable_pylint_rules)
+					},
+
+				}
+				-- ruff = { enabled = true },
+
+				-- 	-- formatter options
+				-- 	ruff = { enabled = true },
+				-- 	black = { enabled = true },
+				-- 	autopep8 = { enabled = false },
+				-- 	yapf = { enabled = false },
+				-- 	-- linter options
+				-- 	pyflakes = { enabled = false },
+				-- 	pycodestyle = { enabled = false },
+				-- 	-- type checker
+				-- 	pylsp_mypy = { enabled = true },
+				-- 	-- auto-completion options
+				-- 	jedi_completion = { fuzzy = true },
+				-- 	-- import sorting
+				-- 	pyls_isort = { enabled = true },
+				--
+				--
+				-- },
+			},
+		},
+		flags = {
+			debounce_text_changes = 200,
+		},
+	}
+end
 
 return M

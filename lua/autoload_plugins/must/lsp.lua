@@ -1,7 +1,11 @@
 local my_lsp = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-settings")
 -- local my_lsp_addons = require("autoload_plugins.plugin_setting.my_lsp_addons")
-local lsp_new =require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-new")
+local lsp_new = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-new")
+local DEACTIVATE_BASEPYRIGHT = true
 
+local deactivate_pyright = function(server_name)
+	return server_name == "basedpyright" and DEACTIVATE_BASEPYRIGHT
+end
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -14,11 +18,14 @@ return {
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				-- ensure_installed = {'lua'}
-        automatic_installation = true,
+				automatic_installation = true,
 
 			})
 			require("mason-lspconfig").setup_handlers {
 				function(server_name)
+					if deactivate_pyright(server_name) then
+						return
+					end
 					lspconfig[server_name].setup {
 						on_attach = my_lsp.on_attach,
 						capabilities = my_lsp.capabilities,

@@ -1,8 +1,8 @@
-	local telescope_builtin = require('telescope.builtin')
+local telescope_builtin = require('telescope.builtin')
 
 return {
 	vim.keymap.set('n', '<leader>sg', ':Telescope live_grep<CR> ', {}),
-	vim.keymap.set('n', '<leader>sg',  telescope_builtin.live_grep, {}),
+	vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, {}),
 	vim.keymap.set('n', '<leader>ss', ':Telescope<CR> ', {}),
 	vim.keymap.set("n", "<leader>so", telescope_builtin.oldfiles, { desc = "[?] Find recently opened files" }),
 	vim.keymap.set("n", "<leader>s<space>", telescope_builtin.buffers, { desc = "[ ] Find existing buffers" }),
@@ -19,12 +19,13 @@ return {
 	-- vim.keymap.set("n", "gr", telescope_builtin.lsp_references, { desc = "[G]oto [R]eferences" }),
 	-- vim.keymap.set("n", "gI", telescope_builtin.lsp_implementations, { desc = '[G]oto [I]mplementation' }),
 
-		vim.keymap.set("n", "<leader>/", function()
+	vim.keymap.set("n", "<leader>/", function()
 		telescope_builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown { previewer = false, sorting_strategy = "ascending", })
 	end, { desc = "[/] Fuzzily search in current buffer]" }),
 
 	vim.keymap.set("n", "<leader>gf", telescope_builtin.git_files, { desc = "Search [G]it [F]iles" }),
-		-- vim.keymap.set("n", "<leader>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" }),
-		vim.keymap.set("n", "<leader>sg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",{ desc = "[S]earch by [G]rep [ARGS]" }),
+	-- vim.keymap.set("n", "<leader>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" }),
+	vim.keymap.set("n", "<leader>sg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+		{ desc = "[S]earch by [G]rep [ARGS]" }),
 
 }

@@ -3,13 +3,13 @@ local CHECK_CMDS = { "rg", "fd" }
 local check = {}
 
 for _, cmd in ipairs(CHECK_CMDS) do
-    -- vim.print(cmd)
-    table.insert(check, {
-        package = {{
-            name = cmd,
-            binaries = { cmd }
-        }}
-    })
+	-- vim.print(cmd)
+	table.insert(check, {
+		package = { {
+			name = cmd,
+			binaries = { cmd }
+		} }
+	})
 end
 
 local check_binary_installed = function(package)

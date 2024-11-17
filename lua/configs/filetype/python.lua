@@ -15,7 +15,7 @@ end
 vim.keymap.set('n', '<leader>`', function()
 	fpath = "/Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py"
 	vim.cmd("!python3 " .. fpath)
-end, {})
+end, { buffer = true })
 
 -- addPyRunner('`')
 -- addPyRunner('1')
