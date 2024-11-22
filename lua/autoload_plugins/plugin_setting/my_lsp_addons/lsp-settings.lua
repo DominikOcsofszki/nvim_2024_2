@@ -56,7 +56,8 @@ M.incc                                    = function()
 		cmd = { 'node', '/Users/dominikocsofszki/WS24/lsp2/server/out/incc-lsp.js' },
 		filetypes = { 'tx', 'incc', 'py' },
 		root_dir = function(fname)
-			return lspconfig.util.find_git_ancestor(fname)
+			return require("lspconfig").util.find_git_ancestor(fname)
+			-- return lspconfig.util.find_git_ancestor(fname)
 		end,
 	}
 end
@@ -85,7 +86,10 @@ local disable_pylint_rules                = {
 	'C0115',
 	'R0903',
 	'C0103',
-	'C0116',
+	'C0103',
+	'E501',
+	'W0012',
+	'W292',
 }
 fun_disable_pylint_rules(disable_pylint_rules)
 
@@ -98,7 +102,7 @@ M.pylsp = function()
 				plugins = {
 					pylint = {
 						maxLineLength = 30,
-						enabled = true,
+						enabled = false,
 						executable = "pylint",
 						args = fun_disable_pylint_rules(disable_pylint_rules)
 					},
@@ -128,6 +132,46 @@ M.pylsp = function()
 		flags = {
 			debounce_text_changes = 200,
 		},
+	}
+end
+
+M.lua_ls = function()
+	require 'lspconfig'.lua_ls.setup {
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+
+		on_init = function(client)
+			if client.workspace_folders then
+				local path = client.workspace_folders[1].name
+				if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+					return
+				end
+			end
+
+			client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+				runtime = {
+					-- Tell the language server which version of Lua you're using
+					-- (most likely LuaJIT in the case of Neovim)
+					version = 'LuaJIT'
+				},
+				-- Make the server aware of Neovim runtime files
+				workspace = {
+					-- checkThirdParty = false,
+					checkThirdParty = true,
+					-- library = {
+					-- 	vim.env.VIMRUNTIME
+					-- 	-- Depending on the usage, you might want to add additional paths here.
+					-- 	-- "${3rd}/luv/library"
+					-- 	-- "${3rd}/busted/library",
+					-- }
+					-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+					library = vim.api.nvim_get_runtime_file("", true)
+				}
+			})
+		end,
+		settings = {
+			Lua = {}
+		}
 	}
 end
 

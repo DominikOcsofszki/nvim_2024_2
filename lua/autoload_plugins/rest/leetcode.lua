@@ -22,20 +22,18 @@ return {
 			["python3"] = {
 				before = true
 			},
-			hooks = {
-				---@type fun()[]
-				["enter"] = {},
-
-				---@type fun(question: lc.ui.Question)[]
-				["question_enter"] = {
-					function(question)
-						local name = vim.fn.exp("%")
-						vim.cmd('w ' .. name .. "solved")
-					end },
-
-				---@type fun()[]
-				["leave"] = {},
-			},
+			-- hooks = {
+			-- 	---@type fun()[]
+			-- 	["enter"] = {},
+			--
+			-- 	---@type fun(question: lc.ui.Question)[]
+			-- 	["question_enter"] = {
+			-- 		function(question)
+			-- 		end },
+			--
+			-- 	---@type fun()[]
+			-- 	["leave"] = {},
+			-- },
 		}
 		-- 		injector = { ---@type table<lc.lang, lc.inject>
 		--     ["python3"] = {

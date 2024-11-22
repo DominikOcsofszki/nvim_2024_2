@@ -19,6 +19,15 @@ local class_methode = [[
         ) @method_def))
 )
 ]]
+local class_methode_name = [[
+((class_definition
+    body: (block
+        (function_definition
+            name: (identifier)@method_name
+            parameters: (parameters)
+        ) ))
+)
+]]
 
 local q_test = [[
   (function_definition)
@@ -29,6 +38,7 @@ local q_test = [[
 M.q_test = prep_parse_python(q_test)
 M.q_class = prep_parse_python(item)
 M.q_class_method = prep_parse_python(class_methode)
+M.q_class_method_name = prep_parse_python(class_methode_name)
 
 -- 	 (function_definition)
 --     name: (identifier)@test_func

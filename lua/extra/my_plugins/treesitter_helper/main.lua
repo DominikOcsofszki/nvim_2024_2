@@ -35,8 +35,11 @@ local print_findings = function(query, tree, bufnr)
 			---@type integer id -- ID of the captured node
 			---@type TSNode node -- The Tree-Sitter node
 			local text = vim.treesitter.get_node_text(node, bufnr)
+			-- vim.print(text)
 			---@type string text -- res
-			if DEBUG then
+			if not DEBUG then
+				table.insert(tbl, text)
+			else
 				vim.print(node:type())
 				vim.print(node:symbol())
 				vim.print(node:named())
@@ -57,8 +60,6 @@ local print_findings = function(query, tree, bufnr)
 				if text.find(text, "_print") then
 					print(text)
 				end
-			else
-				table.insert(tbl, text)
 			end
 		end
 	end
@@ -86,7 +87,8 @@ M.setup = function()
 	vim.api.nvim_create_user_command('ExtractAttributes', extract_attribrutes, {})
 	create_tree_cmd('ExtractClasses', queriesList.q_class, 'python')
 	create_tree_cmd('ExtractTests', queriesList.q_test, 'python')
-	create_tree_cmd('EClassMethod', queriesList.q_class_method, 'python')
+	create_tree_cmd('ET', queriesList.q_test, 'python')
+	create_tree_cmd('ETM', queriesList.q_class_method_name, 'python')
 end
 return M
 

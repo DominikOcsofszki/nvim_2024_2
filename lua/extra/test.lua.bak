@@ -47,10 +47,10 @@
 --
 --
 local options = {
-  'Select color:',
-  '1. red',
-  '2. green',
-  '3. blue'
+	'Select color:',
+	'1. red',
+	'2. green',
+	'3. blue'
 }
 
 -- Show input list and get the user's selection
@@ -58,11 +58,11 @@ local choice = vim.fn.inputlist(options)
 print(choice)
 -- Check the result and handle accordingly
 if choice == 1 then
-  print("You selected red!")
+	print("You selected red!")
 elseif choice == 2 then
-  print("You selected green!")
+	print("You selected green!")
 elseif choice == 3 then
-  print("You selected blue!")
+	print("You selected blue!")
 else
-  print("Invalid choice or selection canceled.")
+	print("Invalid choice or selection canceled.")
 end
