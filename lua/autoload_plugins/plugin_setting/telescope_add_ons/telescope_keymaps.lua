@@ -3,7 +3,7 @@ local telescope_builtin = require('telescope.builtin')
 return {
 	vim.keymap.set('n', '<leader>sg', ':Telescope live_grep<CR> ', {}),
 	vim.keymap.set('n', '<leader>sg', telescope_builtin.live_grep, {}),
-	vim.keymap.set('n', '<leader>ss', ':Telescope<CR> ', {}),
+	vim.keymap.set('n', '<leader>ss', ':Telescope<CR>', {}),
 	vim.keymap.set("n", "<leader>so", telescope_builtin.oldfiles, { desc = "[?] Find recently opened files" }),
 	vim.keymap.set("n", "<leader>s<space>", telescope_builtin.buffers, { desc = "[ ] Find existing buffers" }),
 	vim.keymap.set("n", "<leader>sf", telescope_builtin.find_files, { desc = "[S]earch [F]iles" }),

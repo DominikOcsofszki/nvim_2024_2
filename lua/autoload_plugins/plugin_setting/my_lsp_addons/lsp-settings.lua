@@ -1,18 +1,21 @@
-M                                         = {}
-local lspconfig                           = require("lspconfig")
-local configs                             = require("lspconfig.configs")
-local util                                = require("lspconfig").util
-local _capabilities                       = vim.lsp.protocol.make_client_capabilities()
-M.capabilities                            = require('cmp_nvim_lsp').default_capabilities(_capabilities)
-M.on_attach                               = require("autoload_plugins.plugin_setting.my_lsp_addons.utils").on_attach
+M                                                         = {}
+-- local lspconfig                                           = require("lspconfig")
+-- local configs                                             = require("lspconfig.configs")
+-- local util                                                = require("lspconfig").util
+-- local _capabilities                                       = vim.lsp.protocol
+-- 		.make_client_capabilities()
+-- M.capabilities                                            = require('cmp_nvim_lsp')
+-- 		.default_capabilities(_capabilities)
+-- M.on_attach                                               = require(
+-- 	"autoload_plugins.plugin_setting.my_lsp_addons.utils").on_attach
 
-local basics_attack_capabilities_root_dir = {
+local basics_attack_capabilities_root_dir                 = {
 	on_attach = M.on_attach,
 	capabilities = M.capabilities,
 	-- root_dir = M.root_dir
 }
 
-M.ltex                                    = function()
+M.ltex                                                    = function()
 	local path_spelling = vim.fn.stdpath("config") .. "/files/spell-de.utf-8"
 	vim.keymap.set('n', '<leader>aw', ':!echo <c-r><c-w> >> /Users/dominik/home/.config/nvim/files/spell-de.utf-8',
 		{})
@@ -37,19 +40,35 @@ M.ltex                                    = function()
 	}
 end
 -- local basics = {vim.cmd("echo 'test'")}
-M.basic_lsp_addons                        = function(NAME, ADDONS)
+M.basic_lsp_addons                                        = function(NAME, ADDONS)
 	lspconfig[NAME].setup(vim.tbl_deep_extend("force", basics_attack_capabilities_root_dir, ADDONS or {}))
 end
-M.basic_lsp                               = function(NAME)
+M.basic_lsp                                               = function(NAME)
 	M.basic_lsp_addons(NAME)
 end
 
-M.jedi_language_server                    = function()
-	local addons = {}
+M.jedi_language_server_old                                = function()
+	local addons = {
+		init_options = {
+			-- configurationSection = { 'html', 'css', 'javascript' },
+			codeAction = {},
+		},
+	}
 	M.basic_lsp_addons("jedi_language_server", addons)
 end
 
-M.incc                                    = function()
+local jedi_language_server_capabilities                   = vim.lsp.protocol
+		.make_client_capabilities()
+jedi_language_server_capabilities.textDocument.codeAction = {}
+M.jedi_language_server                                    = function()
+	lspconfig.jedi_language_server.setup {
+		on_attach = M.on_attach,
+		-- capabilities = M.jedi_language_server_capabilities,
+		capabilities = {}
+
+	}
+end
+M.incc                                                    = function()
 	lspconfig.incc.setup {
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
@@ -61,7 +80,7 @@ M.incc                                    = function()
 		end,
 	}
 end
-M.incc_py                                 = function()
+M.incc_py                                                 = function()
 	lspconfig.incc_py.setup {
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
@@ -73,7 +92,7 @@ M.incc_py                                 = function()
 	}
 end
 
-local fun_disable_pylint_rules            = function(rules)
+local fun_disable_pylint_rules                            = function(rules)
 	local args = {}
 	for index, rule in ipairs(rules) do
 		table.insert(args, "-d " .. rule)
@@ -81,7 +100,7 @@ local fun_disable_pylint_rules            = function(rules)
 	return args
 end
 
-local disable_pylint_rules                = {
+local disable_pylint_rules                                = {
 	'C0114',
 	'C0115',
 	'R0903',
@@ -90,6 +109,7 @@ local disable_pylint_rules                = {
 	'E501',
 	'W0012',
 	'W292',
+	'E501',
 }
 fun_disable_pylint_rules(disable_pylint_rules)
 
@@ -176,3 +196,4 @@ M.lua_ls = function()
 end
 
 return M
+

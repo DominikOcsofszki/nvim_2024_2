@@ -8,6 +8,8 @@ return {
 						return { "ruff_format" }
 					else
 						return { "isort", "black" }
+						-- return { "isort" }
+						-- return {}
 					end
 				end,
 			},

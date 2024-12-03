@@ -1,0 +1,24 @@
+1.	Clean Lifecycle
+	•	mvn clean: Deletes the target directory.
+2.	Default Lifecycle
+	•	mvn validate: Validates the project.
+	•	mvn compile: Compiles the project.
+	•	mvn test: Runs the tests.
+	•	mvn package: Packages the project into an artifact.
+	•	mvn verify: Verifies the package against integration tests.
+	•	mvn install: Installs the package into the local repository.
+	•	mvn deploy: Deploys the package to a remote repository.
+3.	Site Lifecycle
+	•	mvn site: Generates the project site.
+	•	mvn site:deploy: Deploys the project site.
+	mvn spring-boot:run
+
+mvn archetype:generate -Dfilter=org.apache.maven.archetypes:
+
+
+@startuml
+participant User as u
+participant Client as c
+participant Server as s
+@enduml
+

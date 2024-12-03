@@ -14,6 +14,7 @@ create_autocmd_for_my_filetypes("s")
 create_autocmd_for_my_filetypes("lua")
 create_autocmd_for_my_filetypes("tx")
 create_autocmd_for_my_filetypes("puml")
+create_autocmd_for_my_filetypes("java")
 
 vim.keymap.set('n', '<leader>`', function()
 	fpath = "/Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py"

@@ -24,27 +24,31 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
-					-- ['<Tab>'] = cmp.mapping.complete(),
-					['<Tab>'] = cmp.mapping.select_next_item(),
-					['<S-Tab>'] = cmp.mapping.select_prev_item(),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<CR>'] = cmp.mapping.confirm({ select = true }),
-					['<C-j>'] = cmp.mapping.select_next_item(),
-					['<c-k>'] = cmp.mapping.confirm({ select = true }),
+					['<c-l>'] = cmp.mapping.complete(),
+					-- ['<C-j>'] = cmp.mapping.select_next_item(),
+					['<C-n>'] = cmp.mapping.select_next_item(),
+					-- ['<c-k>'] = cmp.mapping.select_prev_item(),
+					['<c-p>'] = cmp.mapping.select_prev_item(),
+					['<c-y>'] = cmp.mapping.confirm({ select = true }),
+					['<c-j>'] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 				}, {
-					{ name = 'buffer' },
+					-- { name = 'buffer' }, -- This is used to get info form file/buffer
 					{ name = 'path' },
 				})
 			})
 
 			cmp.setup.cmdline({ '/', '?' }, {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmp.mapping.preset.cmdline({
+					['<C-y>'] = { c = cmp.mapping.confirm({ select = true }) },
+					['<C-j>'] = { c = cmp.mapping.confirm({ select = true }) },
+					['<c-l>'] = cmp.mapping.complete(),
+
+
+				}),
 				sources = {
 					{ name = 'buffer' }
 				}
@@ -52,7 +56,11 @@ return {
 
 			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline(':', {
-				mapping = cmp.mapping.preset.cmdline(),
+				mapping = cmp.mapping.preset.cmdline({
+					['<C-y>'] = { c = cmp.mapping.confirm({ select = true }) },
+					['<C-j>'] = { c = cmp.mapping.confirm({ select = true }) },
+					['<c-l>'] = cmp.mapping.complete(),
+				}),
 				sources = cmp.config.sources({
 					{ name = 'path' }
 				}, {
