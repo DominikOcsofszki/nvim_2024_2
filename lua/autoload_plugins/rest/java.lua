@@ -1,12 +1,6 @@
 return {
-	'nvim-java/nvim-java',
-	opts = {
-		jdk = {
-			auto_install = false,
-		},
+	{
+		'mfussenegger/nvim-jdtls',
+		-- dependencies = formatter
 	}
 }
-
--- return {
--- 	'mfussenegger/nvim-jdtls',
--- }

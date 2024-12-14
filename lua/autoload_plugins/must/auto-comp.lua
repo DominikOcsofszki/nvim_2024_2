@@ -7,7 +7,8 @@ return {
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-cmdline',
-			'L3MON4D3/LuaSnip',
+			{'L3MON4D3/LuaSnip',   dependencies = { "rafamadriz/friendly-snippets" },
+		},
 			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function()
@@ -27,6 +28,7 @@ return {
 					['<c-l>'] = cmp.mapping.complete(),
 					-- ['<C-j>'] = cmp.mapping.select_next_item(),
 					['<C-n>'] = cmp.mapping.select_next_item(),
+					['<C-k>'] = cmp.mapping.select_next_item(),
 					-- ['<c-k>'] = cmp.mapping.select_prev_item(),
 					['<c-p>'] = cmp.mapping.select_prev_item(),
 					['<c-y>'] = cmp.mapping.confirm({ select = true }),

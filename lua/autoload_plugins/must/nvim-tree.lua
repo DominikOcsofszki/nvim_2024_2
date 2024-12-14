@@ -18,6 +18,7 @@ return {
 		-- },
 		prefer_startup_root = false,
 		renderer = {
+        group_empty = true,
 			add_trailing = true,
 			icons = {
 				git_placement = "after",

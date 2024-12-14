@@ -13,34 +13,34 @@ local handlers        = {
 	end,
 }
 
-local LSP_USE_HANDLER = false
-return {}
--- 	{
--- 		"williamboman/mason-lspconfig.nvim",
--- 		dependencies = {
--- 			"williamboman/mason.nvim",
--- 			"neovim/nvim-lspconfig",
--- 		},
--- 		config = function()
--- 			require("mason").setup()
--- 			require("mason-lspconfig").setup({
--- 				ensure_installed = {},
--- 				automatic_installation = true,
--- 				handlers = nil
--- 			})
--- 			-- Never use lspconfig and mason-lspconfig handlers together!!!
--- 			if LSP_USE_HANDLER then
--- 				require("mason-lspconfig").setup_handlers(handlers)
--- 			else
--- 				require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_pylsp").pylsp()
---
--- 				-- require("lspconfig").lua_ls.setup {}
--- 			end
--- 			--=====================================
--- 			-- Area for setups that are not in Mason
--- 			--=====================================
--- 			LSP_INCC_SERVER.setup()
--- 			--=====================================
--- 		end
--- 	}
--- }
+local LSP_USE_HANDLER = true
+return {
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "ruff_lsp", "basedpyright" },
+				automatic_installation = true,
+				handlers = nil
+			})
+			-- Never use lspconfig and mason-lspconfig handlers together!!!
+			if LSP_USE_HANDLER then
+				require("mason-lspconfig").setup_handlers(handlers)
+			else
+				require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_pylsp").pylsp()
+
+				-- require("lspconfig").lua_ls.setup {}
+			end
+			--=====================================
+			-- Area for setups that are not in Mason
+			--=====================================
+			LSP_INCC_SERVER.setup()
+			--=====================================
+		end
+	}
+}

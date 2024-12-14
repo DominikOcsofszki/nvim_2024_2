@@ -27,5 +27,7 @@ return {
 	-- vim.keymap.set("n", "<leader>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" }),
 	vim.keymap.set("n", "<leader>sg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
 		{ desc = "[S]earch by [G]rep [ARGS]" }),
+	vim.keymap.set("n", "<leader>shh", ":lua require('telescope').extensions.live_grep_args.live_grep_args({hidden=true})<CR>",
+		{ desc = "live grep hidden" }),
 
 }
