@@ -2,34 +2,34 @@ local LSP_IMPORTS = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-a
 
 local home = vim.fn.getenv("HOME")
 
-local ON_ATTACH_JDTLS = function(_, bufnr)
-	LSP_IMPORTS.ON_ATTACH(_, bufnr)
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = 'LSP: ' .. desc
-		end
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-	end
-
-	nmap("n", "<leader>di", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
-	nmap("n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>")
-	nmap("n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
-	nmap("v", "<leader>de", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
-	nmap("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>")
-	nmap("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
-	nmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-
-	vim.api.nvim_exec([[
-          hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-          hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-          hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-          augroup lsp_document_highlight
-            autocmd!
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-          augroup END
-      ]], false)
-end
+-- local ON_ATTACH_JDTLS = function(_, bufnr)
+-- 	local nmap = function(mode, keys, func, desc)
+-- 		if desc then
+-- 			desc = 'LSP: ' .. desc
+-- 		end
+-- 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+-- 	end
+--
+-- 	nmap("n", "<leader>di", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
+-- 	nmap("n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>")
+-- 	nmap("n", "<leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
+-- 	nmap("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>")
+-- 	nmap("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
+-- 	nmap("v", "<leader>de", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>")
+-- 	nmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+--
+-- 	vim.api.nvim_exec([[
+-- 	          hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+-- 	          hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+-- 	          hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+-- 	          augroup lsp_document_highlight
+-- 	            autocmd!
+-- 	            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+-- 	            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+-- 	          augroup END
+-- 	      ]], false)
+-- 	LSP_IMPORTS.ON_ATTACH(_, bufnr)
+-- end
 
 
 -- https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
@@ -132,7 +132,9 @@ M.jdtls              = function()
 	end
 
 	require('lspconfig').jdtls.setup({
-		on_attach = ON_ATTACH_JDTLS,
+		on_attach = LSP_IMPORTS.ON_ATTACH,
+		-- on_attach = ON_ATTACH_JDTLS,
+
 		-- capabilities = LSP_IMPORTS.capabilities,
 		capabilities = extendedClientCapabilitiesjdtls,
 		settings = jdtls_settings

@@ -10,6 +10,7 @@ return {
 	config = function()
 		require("neotest").setup({
 			adapters = {
+				["neotest-java"] = {},
 				require("neotest-python") {
 					pytest_discover_instances = false,
 					-- is_test_file = function()

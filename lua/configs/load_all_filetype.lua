@@ -17,6 +17,7 @@ create_autocmd_for_my_filetypes("puml")
 create_autocmd_for_my_filetypes("java")
 create_autocmd_for_my_filetypes("http")
 create_autocmd_for_my_filetypes("rest_nvim_result")
+create_autocmd_for_my_filetypes("json")
 
 vim.keymap.set('n', '<leader>`', function()
 	fpath = "/Users/dominik/HOME/DEV/Compiler/incc24/dom/arm/compiler.py"

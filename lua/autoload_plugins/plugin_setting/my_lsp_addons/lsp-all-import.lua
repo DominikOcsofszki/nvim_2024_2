@@ -1,5 +1,3 @@
--- local LSP_IMPORTS              = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp-all-import")
-
 local M = {}
 
 
@@ -33,9 +31,6 @@ M.ON_ATTACH = function(_, bufnr)
 	nmap('gh', vim.lsp.buf.hover, 'Hover Documentation')
 	nmap('<leader>g=', vim.lsp.buf.signature_help, 'Signature Documentation')
 end
-
-
-
 
 
 return M

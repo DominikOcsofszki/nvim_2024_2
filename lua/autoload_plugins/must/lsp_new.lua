@@ -4,7 +4,7 @@ local LSP_INCC_SERVER = require("autoload_plugins.plugin_setting.my_lsp_addons.l
 local handlers        = {
 	["pylsp"] = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_pylsp").pylsp,
 	["jdtls"] = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_jdtls").jdtls,
-	["ruff_lsp"] = require("autoload_plugins.plugin_setting.my_lsp_addons.ruff_lsp").ruff_lsp,
+	-- ["ruff-lsp"] = require("autoload_plugins.plugin_setting.my_lsp_addons.ruff_lsp").ruff_lsp,
 	function(server_name)
 		require("lspconfig")[server_name].setup {
 			on_attach = LSP_IMPORTS.ON_ATTACH,
@@ -24,7 +24,8 @@ return {
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ruff_lsp", "basedpyright" },
+				-- ensure_installed = { "ruff-lsp", "basedpyright" },
+				ensure_installed = {},
 				automatic_installation = true,
 				handlers = nil
 			})
@@ -39,7 +40,7 @@ return {
 			--=====================================
 			-- Area for setups that are not in Mason
 			--=====================================
-			LSP_INCC_SERVER.setup()
+			-- LSP_INCC_SERVER.setup()
 			--=====================================
 		end
 	}
