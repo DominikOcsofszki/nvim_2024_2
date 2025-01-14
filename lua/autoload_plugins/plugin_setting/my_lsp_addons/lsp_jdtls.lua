@@ -66,7 +66,8 @@ local jdtls_settings = {
 			runtimes = {
 				{
 					name = "Java",
-					path = vim.fn.getenv("java"),
+					-- path = vim.fn.getenv("java"),
+					-- path = "/opt/homebrew/Cellar/openjdk@21/21.0.5/libexec/openjdk.jdk/Contents/Home",
 				},
 			}
 		},

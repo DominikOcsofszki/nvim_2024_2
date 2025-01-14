@@ -3,7 +3,7 @@ return -- lazy.nvim
 	"lervag/vimtex",
 	lazy = false,
 	init = function()
-		vim.g.vimtex_quickfix_ignore_filters = { 'Underfull', 'Overfull','.my-latex' }
+		vim.g.vimtex_quickfix_ignore_filters = { 'Underfull', 'Overfull', '.my-latex' }
 
 		vim.g.vimtex_compiler_latexmk = {
 			callback = 1,

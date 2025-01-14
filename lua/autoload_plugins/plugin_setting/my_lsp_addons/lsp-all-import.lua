@@ -16,10 +16,6 @@ M.ON_ATTACH = function(_, bufnr)
 
 	nmap('<leader>ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
 	nmap('ga', vim.lsp.buf.code_action, '[C]ode [A]ction')
-	nmap("<leader>]", function() vim.diagnostic.goto_next() end, '[G]oto [D]iagnostics')
-	nmap("]d", function() vim.diagnostic.goto_next() end, '[G]oto [D]iagnostics')
-	nmap("<leader>[", function() vim.diagnostic.goto_prev() end, '[G]oto [D]iagnostics')
-	nmap("[d", function() vim.diagnostic.goto_prev() end, '[G]oto [D]iagnostics')
 	nmap('<leader>gr', vim.lsp.buf.rename, '[R]e[n]ame')
 	nmap('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
 	nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
@@ -30,7 +26,16 @@ M.ON_ATTACH = function(_, bufnr)
 	nmap('<leader>gh', vim.lsp.buf.hover, 'Hover Documentation')
 	nmap('gh', vim.lsp.buf.hover, 'Hover Documentation')
 	nmap('<leader>g=', vim.lsp.buf.signature_help, 'Signature Documentation')
+	nmap("]d", function()
+			vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+		end,
+		'[G]oto [D]iagnostics')
+	nmap("[d", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end,
+		'[G]oto [D]iagnostics')
+	nmap("<leader>]", function() vim.diagnostic.goto_next() end, '[G]oto [D]iagnostics')
+	nmap("<leader>[", function() vim.diagnostic.goto_prev() end, '[G]oto [D]iagnostics')
 end
+
 
 
 return M

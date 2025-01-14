@@ -4,6 +4,7 @@ local LSP_INCC_SERVER = require("autoload_plugins.plugin_setting.my_lsp_addons.l
 local handlers        = {
 	["pylsp"] = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_pylsp").pylsp,
 	["jdtls"] = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_jdtls").jdtls,
+	["ltex"] = require("autoload_plugins.plugin_setting.my_lsp_addons.lsp_ltex").ltex,
 	-- ["ruff-lsp"] = require("autoload_plugins.plugin_setting.my_lsp_addons.ruff_lsp").ruff_lsp,
 	function(server_name)
 		require("lspconfig")[server_name].setup {

@@ -8,7 +8,7 @@ vim.o.shiftwidth = 2
 vim.opt.undofile = true
 vim.opt.mouse = "a"
 vim.cmd.colorscheme("kanagawa")
-vim.o.relativenumber = true
+-- vim.o.relativenumber = true
 vim.o.number = true
 
 -- vim.g.python3_host_prog = '/path/to/python3'

@@ -16,7 +16,20 @@ vim.api.nvim_create_user_command('PE', function()
 end, { nargs = 0 })
 
 vim.b.cms = "'%s"
+
+
+local savePlantuml = function()
+	-- local fname_with_ext = vim.fn.expand("%:t")
+	-- local fname_no_ext = vim.fn.expand("%:t:r")
+	local dir_name = vim.fn.expand("%:h")
+	local last_dir = dir_name:match("([^/]+)$") or ''
+	-- local fname_solved_md = "./solved/" .. fname_no_ext .. ".md"
+	-- vim.cmd('w ' .. dir_name .. "/" .. fname_solved)
+	vim.cmd('!plantuml % -o ../img/' .. last_dir)
+end
+
 vim.keymap.set('n', '\\', function()
 	vim.cmd('w')
-	vim.cmd('!plantuml % -o ../img ')
+	-- vim.cmd('!plantuml % -o ../img ')
+	savePlantuml()
 end, { buffer = true })
