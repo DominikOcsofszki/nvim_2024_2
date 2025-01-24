@@ -12,6 +12,7 @@ return {
 			'saadparwaiz1/cmp_luasnip',
 		},
 		config = function()
+			local luasnip = require("luasnip")
 			local cmp = require('cmp')
 			cmp.setup({
 				snippet = {
@@ -33,12 +34,27 @@ return {
 					['<c-p>'] = cmp.mapping.select_prev_item(),
 					['<c-y>'] = cmp.mapping.confirm({ select = true }),
 					['<c-j>'] = cmp.mapping.confirm({ select = true }),
+					["<c-a>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+					-- 	if luasnip.locally_jumpable(-1) then
+					-- 		luasnip.jump(-1)
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, { "i", "s" }),
+
 				}),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 				}, {
-					-- { name = 'buffer' }, -- This is used to get info form file/buffer
+					{ name = 'buffer' }, -- This is used to get info form file/buffer
 					{ name = 'path' },
 				})
 			})

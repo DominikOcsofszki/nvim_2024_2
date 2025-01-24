@@ -1,0 +1,42 @@
+{
+	"lsp": {
+		"prefix": "lsp",
+		"body": "\\gls{lsp} "
+	},
+	"lss": {
+		"prefix": "lss",
+		"body": "\\gls{lss} "
+	},
+	"ide": {
+		"prefix": "ide",
+		"body": "\\gls{ide} "
+	},
+	"incc": {
+		"prefix": "incc",
+		"body": "\\gls{incc} "
+	},
+	"vsc": {
+		"prefix": "vsc",
+		"body": "\\gls{vsc} "
+	},
+	"nvim": {
+		"prefix": "nvim",
+		"body": "\\gls{nvim} "
+	},
+	"Figure:ACM": {
+		"prefix": "fig:img",
+		"body": [
+			"\\begin{figure}[htb]",
+			"\\\\centering ",
+			"\t\\includegraphics[width=0.95\\textwidth]{assets/figures/$1}",
+			"\t\\caption{$2}\\label{fig:$3}",
+			"\\end{figure}",
+			"$0"
+		],
+		"description": "Add a figure from assets/figures"
+	},
+	"": {
+		"prefix": "",
+		"body": ""
+	}
+}

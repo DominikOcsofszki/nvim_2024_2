@@ -15,21 +15,20 @@ vim.api.nvim_create_user_command('PE', function()
 	vim.cmd("execute'!plantuml -teps % -o generated' | e generated/%:t:r.eps")
 end, { nargs = 0 })
 
-vim.b.cms = "'%s"
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = '*.puml', command = "set cms='%s"
+})
 
 
-local savePlantuml = function()
-	-- local fname_with_ext = vim.fn.expand("%:t")
-	-- local fname_no_ext = vim.fn.expand("%:t:r")
+local savePlantumlLatex = function()
 	local dir_name = vim.fn.expand("%:h")
 	local last_dir = dir_name:match("([^/]+)$") or ''
-	-- local fname_solved_md = "./solved/" .. fname_no_ext .. ".md"
-	-- vim.cmd('w ' .. dir_name .. "/" .. fname_solved)
-	vim.cmd('!plantuml % -o ../img/' .. last_dir)
+	vim.cmd('!plantuml -teps % -o ../img/' .. last_dir)
 end
 
 vim.keymap.set('n', '\\', function()
 	vim.cmd('w')
 	-- vim.cmd('!plantuml % -o ../img ')
-	savePlantuml()
+	savePlantumlLatex()
 end, { buffer = true })
